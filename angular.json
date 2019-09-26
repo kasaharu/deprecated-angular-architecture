@@ -90,6 +90,7 @@
             "karmaConfig": "karma.conf.js",
             "watch": false,
             "codeCoverage": true,
+            "progress": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
