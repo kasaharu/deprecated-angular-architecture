@@ -58,7 +58,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   cursor: hand;
-  font-family: Arial;
+  font-family: Arial; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 }
 
 button:hover {

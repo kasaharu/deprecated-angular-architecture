@@ -13,11 +13,11 @@ body,
 input[text],
 button {
   color: crimson;
-  font-family: Cambria, Georgia;
+  font-family: Cambria, Georgia; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
 }
 
 button.clear {
-  font-family: Arial;
+  font-family: Arial; /* stylelint-disable-line font-family-no-missing-generic-family-keyword */
   background-color: #eee;
   border: none;
   padding: 5px 10px;
