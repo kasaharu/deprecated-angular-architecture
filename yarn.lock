@@ -876,6 +876,11 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@ngrx/store-devtools@^8.3.0":
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-8.3.0.tgz#c9e9f5bd9fe7e32c605d3a85888d4da91a582b02"
+  integrity sha512-7jsmN8wz6PMKrbqHnUulMvf8OSYUZbXXOwkcXRaGqIjlnEG9RCHQL0cXuF8zB6uX5xencdEXsRVQe3MdZXWQng==
+
 "@ngrx/store@^8.3.0":
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.3.0.tgz#f2eaf428ec9e8379801cc37e3f6bffe88c2af472"
