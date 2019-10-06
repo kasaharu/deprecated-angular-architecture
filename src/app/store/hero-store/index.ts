@@ -1,5 +1,6 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
 import { Hero } from '../../hero';
+import { createFeatureStoreSelector } from '../helpers/selector-helper';
 
 // NOTE: State
 export interface State {
@@ -24,3 +25,7 @@ const heroReducer = createReducer(initialState, on(saveHeroes, (state, heroes) =
 export default function reducer(state: State, action: ActionsUnionType): State {
   return heroReducer(state, action);
 }
+
+// NOTE: Selectors
+export const featureName = 'hero';
+export const selectStateFromTaskStore = createFeatureStoreSelector<State>(featureName);
