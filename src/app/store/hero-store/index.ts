@@ -1,4 +1,4 @@
-import { createAction, props, union } from '@ngrx/store';
+import { createAction, createReducer, on, props, union } from '@ngrx/store';
 import { Hero } from '../../hero';
 
 // NOTE: State
@@ -17,3 +17,10 @@ export const Actions = { saveHeroes };
 // tslint:disable-next-line: variable-name
 const ActionsUnion = union(Actions);
 type ActionsUnionType = typeof ActionsUnion;
+
+// NOTE: Reducer
+const heroReducer = createReducer(initialState, on(saveHeroes, (state, heroes) => ({ ...state, heroes })));
+
+export default function reducer(state: State, action: ActionsUnionType): State {
+  return heroReducer(state, action);
+}
