@@ -15,7 +15,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
-import { RootStoreModule } from './root-store/root-store.module';
+import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
   imports: [
