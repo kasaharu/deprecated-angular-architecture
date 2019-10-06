@@ -15,6 +15,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
+import { RootStoreModule } from './root-store/root-store.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MessagesComponent } from './messages/messages.component';
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    RootStoreModule,
   ],
   declarations: [AppComponent, DashboardComponent, HeroesComponent, HeroDetailComponent, MessagesComponent, HeroSearchComponent],
   bootstrap: [AppComponent],
