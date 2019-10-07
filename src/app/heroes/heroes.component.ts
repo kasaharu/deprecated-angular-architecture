@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Store } from '@ngrx/store';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { saveHeroes as HeroStoreActionSaveHeroes } from '../store/hero-store';
 
 @Component({
   selector: 'app-heroes',
@@ -11,14 +12,17 @@ import { HeroService } from '../hero.service';
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
 
-  constructor(private heroService: HeroService) {}
+  constructor(private store$: Store<{}>, private heroService: HeroService) {}
 
   ngOnInit() {
     this.getHeroes();
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
+    this.heroService.getHeroes().subscribe((heroes) => {
+      this.heroes = heroes;
+      this.store$.dispatch(HeroStoreActionSaveHeroes(heroes));
+    });
   }
 
   add(name: string): void {
