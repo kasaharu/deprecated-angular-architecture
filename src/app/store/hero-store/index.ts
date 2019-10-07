@@ -12,7 +12,7 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveHeroes = createAction('[Hero] Save heroes', props<Hero[]>());
+export const saveHeroes = createAction('[Hero] Save heroes', props<{ heroes: Hero[] }>());
 // tslint:disable-next-line: variable-name
 export const Actions = { saveHeroes };
 // tslint:disable-next-line: variable-name
@@ -20,7 +20,7 @@ const ActionsUnion = union(Actions);
 type ActionsUnionType = typeof ActionsUnion;
 
 // NOTE: Reducer
-const heroReducer = createReducer(initialState, on(saveHeroes, (state, heroes) => ({ ...state, heroes })));
+const heroReducer = createReducer(initialState, on(saveHeroes, (state, { heroes }) => ({ ...state, heroes })));
 
 export default function reducer(state: State, action: ActionsUnionType): State {
   return heroReducer(state, action);
