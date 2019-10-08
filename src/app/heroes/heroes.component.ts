@@ -3,7 +3,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { addHero as HeroStoreActionAddHero, saveHeroes as HeroStoreActionSaveHeroes, selectStateFromTaskStore } from '../store/hero-store';
+import {
+  Actions as HeroStoreActions,
+  addHero as HeroStoreActionAddHero,
+  saveHeroes as HeroStoreActionSaveHeroes,
+  selectStateFromTaskStore,
+} from '../store/hero-store';
 
 @Component({
   selector: 'app-heroes',
@@ -36,6 +41,7 @@ export class HeroesComponent implements OnInit {
   }
 
   delete(hero: Hero): void {
+    this.store$.dispatch(HeroStoreActions.deleteHero({ hero }));
     // this.heroes = this.heroes.filter((h) => h !== hero);
     this.heroService.deleteHero(hero).subscribe();
   }
