@@ -12,9 +12,9 @@ export const initialState: State = {
 };
 
 // NOTE: Actions
-export const saveHeroes = createAction('[Hero] Save heroes', props<{ heroes: Hero[] }>());
-export const addHero = createAction('[Hero] Add hero', props<{ hero: Hero }>());
-export const deleteHero = createAction('[Hero] Delete hero', props<{ hero: Hero }>());
+const saveHeroes = createAction('[Hero] Save heroes', props<{ heroes: Hero[] }>());
+const addHero = createAction('[Hero] Add hero', props<{ hero: Hero }>());
+const deleteHero = createAction('[Hero] Delete hero', props<{ hero: Hero }>());
 
 // tslint:disable-next-line: variable-name
 export const Actions = { saveHeroes, addHero, deleteHero };

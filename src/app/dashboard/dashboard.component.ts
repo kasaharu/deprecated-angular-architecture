@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { saveHeroes as HeroStoreActionSaveHeroes } from '../store/hero-store';
+import { Actions as HeroStoreActions } from '../store/hero-store';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
   getHeroes(): void {
     this.heroService.getHeroes().subscribe((heroes) => {
       this.heroes = heroes.slice(1, 5);
-      this.store$.dispatch(HeroStoreActionSaveHeroes({ heroes }));
+      this.store$.dispatch(HeroStoreActions.saveHeroes({ heroes }));
     });
   }
 }

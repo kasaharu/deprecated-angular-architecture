@@ -3,12 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import {
-  Actions as HeroStoreActions,
-  addHero as HeroStoreActionAddHero,
-  saveHeroes as HeroStoreActionSaveHeroes,
-  selectStateFromTaskStore,
-} from '../store/hero-store';
+import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../store/hero-store';
 
 @Component({
   selector: 'app-heroes',
@@ -26,7 +21,7 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes().subscribe((heroes) => {
-      this.store$.dispatch(HeroStoreActionSaveHeroes({ heroes }));
+      this.store$.dispatch(HeroStoreActions.saveHeroes({ heroes }));
     });
   }
 
@@ -36,7 +31,7 @@ export class HeroesComponent implements OnInit {
       return;
     }
     this.heroService.addHero({ name } as Hero).subscribe((hero) => {
-      this.store$.dispatch(HeroStoreActionAddHero({ hero }));
+      this.store$.dispatch(HeroStoreActions.addHero({ hero }));
     });
   }
 
