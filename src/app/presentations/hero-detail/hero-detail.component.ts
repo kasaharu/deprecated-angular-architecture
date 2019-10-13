@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Hero } from '../../domain/hero';
-import { HeroAdapter } from '../../infrastructures/hero.adapter';
+import { HeroDetailCommand } from '../../applications/hero-detail/hero-detail.command';
+import { HeroDetailQuery } from '../../applications/hero-detail/hero-detail.query';
 
 @Component({
   selector: 'app-hero-detail',
@@ -10,17 +10,18 @@ import { HeroAdapter } from '../../infrastructures/hero.adapter';
   styleUrls: ['./hero-detail.component.scss'],
 })
 export class HeroDetailComponent implements OnInit {
-  hero: Hero;
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private command: HeroDetailCommand,
+    private query: HeroDetailQuery,
+  ) {}
 
-  constructor(private route: ActivatedRoute, private heroService: HeroAdapter, private location: Location) {}
+  hero$ = this.query.selectedHero$;
 
   ngOnInit(): void {
-    this.getHero();
-  }
-
-  getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id).subscribe((hero) => (this.hero = hero));
+    this.command.getHero(id);
   }
 
   goBack(): void {
@@ -28,6 +29,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   save(): void {
-    this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+    // TODO: 実装
+    // this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
   }
 }
