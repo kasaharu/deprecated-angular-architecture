@@ -6,11 +6,13 @@ import { createFeatureStoreSelector } from '../helpers/selector-helper';
 export interface State {
   heroes: Hero[] | null;
   selectedHero: Hero | null;
+  searchTerms: string;
 }
 
 export const initialState: State = {
   heroes: null,
   selectedHero: null,
+  searchTerms: '',
 };
 
 // NOTE: Actions
@@ -18,9 +20,10 @@ const saveHeroes = createAction('[Hero] Save heroes', props<{ heroes: Hero[] }>(
 const addHero = createAction('[Hero] Add hero', props<{ hero: Hero }>());
 const deleteHero = createAction('[Hero] Delete hero', props<{ hero: Hero }>());
 const selectHero = createAction('[Hero] Select hero', props<{ hero: Hero }>());
+const changeSearchTerms = createAction('[Hero] Change search terms', props<{ searchTerms: string }>());
 
 // tslint:disable-next-line: variable-name
-export const Actions = { saveHeroes, addHero, deleteHero, selectHero };
+export const Actions = { saveHeroes, addHero, deleteHero, selectHero, changeSearchTerms };
 // tslint:disable-next-line: variable-name
 const ActionsUnion = union(Actions);
 type ActionsUnionType = typeof ActionsUnion;
@@ -32,6 +35,7 @@ const heroReducer = createReducer(
   on(addHero, (state, { hero }) => ({ ...state, heroes: [...state.heroes, hero] })),
   on(deleteHero, (state, { hero }) => ({ ...state, heroes: state.heroes.filter((h) => h !== hero) })),
   on(selectHero, (state, { hero }) => ({ ...state, selectedHero: hero })),
+  on(changeSearchTerms, (state, { searchTerms }) => ({ ...state, searchTerms })),
 );
 
 export default function reducer(state: State, action: ActionsUnionType): State {
