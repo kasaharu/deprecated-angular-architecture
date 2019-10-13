@@ -5,7 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { HeroAdapter } from '../infrastructures/hero.adapter';
 
 @Component({
   selector: 'app-hero-search',
@@ -16,7 +16,7 @@ export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroAdapter) {}
 
   // 検索語をobservableストリームにpushする
   search(term: string): void {

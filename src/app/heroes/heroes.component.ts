@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { HeroAdapter } from '../infrastructures/hero.adapter';
 import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../store/hero-store';
 
 @Component({
@@ -13,7 +13,7 @@ import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../store/
 export class HeroesComponent implements OnInit {
   heroes$: Observable<Hero[]> = selectStateFromTaskStore(this.store$, (state) => state.heroes);
 
-  constructor(private store$: Store<{}>, private heroService: HeroService) {}
+  constructor(private store$: Store<{}>, private heroService: HeroAdapter) {}
 
   ngOnInit() {
     this.getHeroes();
