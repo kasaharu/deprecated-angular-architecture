@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Observable, Subject } from 'rxjs';
-
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-
-import { Hero } from '../../domain/hero';
-import { HeroAdapter } from '../../infrastructures/hero.adapter';
+import { HeroSearchCommand } from '../../applications/hero-search/hero-search.command';
+import { HeroSearchQuery } from '../../applications/hero-search/hero-search.query';
 
 @Component({
   selector: 'app-hero-search',
@@ -13,26 +8,14 @@ import { HeroAdapter } from '../../infrastructures/hero.adapter';
   styleUrls: ['./hero-search.component.scss'],
 })
 export class HeroSearchComponent implements OnInit {
-  heroes$: Observable<Hero[]>;
-  private searchTerms = new Subject<string>();
+  constructor(private query: HeroSearchQuery, private command: HeroSearchCommand) {}
 
-  constructor(private heroService: HeroAdapter) {}
+  heroes$ = this.query.heroes$;
+  searchTerms = this.query.searchTerms$;
 
-  // 検索語をobservableストリームにpushする
+  ngOnInit(): void {}
+
   search(term: string): void {
-    this.searchTerms.next(term);
-  }
-
-  ngOnInit(): void {
-    this.heroes$ = this.searchTerms.pipe(
-      // 各キーストロークの後、検索前に300ms待つ
-      debounceTime(300),
-
-      // 直前の検索語と同じ場合は無視する
-      distinctUntilChanged(),
-
-      // 検索語が変わる度に、新しい検索observableにスイッチする
-      switchMap((term: string) => this.heroService.searchHeroes(term)),
-    );
+    this.command.changeSearchTerms(term);
   }
 }
