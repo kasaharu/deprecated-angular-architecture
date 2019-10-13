@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { HeroesQuery } from '../../applications/heroes/heroes.query';
 import { Hero } from '../../hero';
 import { HeroAdapter } from '../../infrastructures/hero.adapter';
-import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../../store/hero-store';
+import { Actions as HeroStoreActions } from '../../store/hero-store';
 
 @Component({
   selector: 'app-heroes',
@@ -11,9 +11,8 @@ import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../../sto
   styleUrls: ['./heroes.component.scss'],
 })
 export class HeroesComponent implements OnInit {
-  heroes$: Observable<Hero[]> = selectStateFromTaskStore(this.store$, (state) => state.heroes);
-
-  constructor(private store$: Store<{}>, private heroService: HeroAdapter) {}
+  constructor(private store$: Store<{}>, private query: HeroesQuery, private heroService: HeroAdapter) {}
+  heroes$ = this.query.heroes$;
 
   ngOnInit() {
     this.getHeroes();
