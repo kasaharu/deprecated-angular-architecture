@@ -1,5 +1,5 @@
 import { createAction, createReducer, on, props, union } from '@ngrx/store';
-import { Hero } from '../../hero';
+import { Hero } from '../../domain/hero';
 import { createFeatureStoreSelector } from '../helpers/selector-helper';
 
 // NOTE: State

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Hero } from '../hero';
+import { Hero } from '../domain/hero';
 import { MessageService } from '../message.service';
 
 @Injectable({ providedIn: 'root' })

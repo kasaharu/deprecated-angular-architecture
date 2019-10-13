@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Hero } from '../../hero';
+import { Hero } from '../../domain/hero';
 import { HeroAdapter } from '../../infrastructures/hero.adapter';
 import { Actions as HeroStoreActions } from '../../store/hero-store';
 
