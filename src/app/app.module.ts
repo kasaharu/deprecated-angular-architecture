@@ -14,7 +14,7 @@ import { DashboardComponent } from './presentations/dashboard/dashboard.componen
 import { HeroDetailComponent } from './presentations/hero-detail/hero-detail.component';
 import { HeroSearchComponent } from './presentations/hero-search/hero-search.component';
 import { HeroesComponent } from './presentations/heroes/heroes.component';
-import { MessagesComponent } from './messages/messages.component';
+import { MessagesComponent } from './presentations/messages/messages.component';
 import { RootStoreModule } from './store/root-store.module';
 
 @NgModule({
