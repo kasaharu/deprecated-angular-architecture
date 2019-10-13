@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeroSearchComponent } from '../../hero-search/hero-search.component';
+import { HeroSearchComponent } from '../hero-search/hero-search.component';
 import { DashboardComponent } from './dashboard.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
