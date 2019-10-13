@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { Hero } from '../domain/hero';
+import { HeroAdapter } from '../infrastructures/hero.adapter';
 import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../store/hero-store';
 
 @Component({
@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     return state.heroes.slice(1, 5);
   });
 
-  constructor(private store$: Store<{}>, private heroService: HeroService) {}
+  constructor(private store$: Store<{}>, private heroService: HeroAdapter) {}
 
   ngOnInit() {
     this.getHeroes();

@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { HeroService } from '../hero.service';
+import { HeroAdapter } from '../infrastructures/hero.adapter';
 import { HEROES } from '../mock-heroes';
 
 describe('DashboardComponent', () => {
@@ -20,7 +20,7 @@ describe('DashboardComponent', () => {
     TestBed.configureTestingModule({
       declarations: [DashboardComponent, HeroSearchComponent],
       imports: [RouterTestingModule.withRoutes([])],
-      providers: [{ provide: HeroService, useValue: heroService }],
+      providers: [{ provide: HeroAdapter, useValue: heroService }],
     }).compileComponents();
   }));
 
