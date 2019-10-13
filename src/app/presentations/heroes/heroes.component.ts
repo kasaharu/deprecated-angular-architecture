@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Hero } from '../hero';
-import { HeroAdapter } from '../infrastructures/hero.adapter';
-import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../store/hero-store';
+import { Hero } from '../../hero';
+import { HeroAdapter } from '../../infrastructures/hero.adapter';
+import { Actions as HeroStoreActions, selectStateFromTaskStore } from '../../store/hero-store';
 
 @Component({
   selector: 'app-heroes',
