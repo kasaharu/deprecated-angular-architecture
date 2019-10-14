@@ -9,9 +9,8 @@ import { Actions as HeroStoreActions } from '../../store/hero-store';
 export class HeroDetailCommand {
   constructor(private store$: Store<{}>, private heroAdapter: HeroAdapter) {}
 
-  getHero(id: number): void {
-    this.heroAdapter.getHero(id).subscribe((hero) => {
-      this.store$.dispatch(HeroStoreActions.selectHero({ hero }));
-    });
+  async getHero(id: number): Promise<void> {
+    const hero = await this.heroAdapter.getHero(id).toPromise();
+    this.store$.dispatch(HeroStoreActions.selectHero({ hero }));
   }
 }

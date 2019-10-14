@@ -10,20 +10,18 @@ import { Actions as HeroStoreActions } from '../../store/hero-store';
 export class HeroesCommand {
   constructor(private store$: Store<{}>, private heroAdapter: HeroAdapter) {}
 
-  getHeroes(): void {
-    this.heroAdapter.getHeroes().subscribe((heroes) => {
-      this.store$.dispatch(HeroStoreActions.saveHeroes({ heroes }));
-    });
+  async getHeroes(): Promise<void> {
+    const heroes = await this.heroAdapter.getHeroes().toPromise();
+    this.store$.dispatch(HeroStoreActions.saveHeroes({ heroes }));
   }
 
-  add(name: string): void {
+  async add(name: string): Promise<void> {
     name = name.trim();
     if (!name) {
       return;
     }
-    this.heroAdapter.addHero({ name } as Hero).subscribe((hero) => {
-      this.store$.dispatch(HeroStoreActions.addHero({ hero }));
-    });
+    const hero = await this.heroAdapter.addHero({ name } as Hero).toPromise();
+    this.store$.dispatch(HeroStoreActions.addHero({ hero }));
   }
 
   delete(hero: Hero): void {
