@@ -7,7 +7,9 @@ import { selectStateFromHeroStore } from '../../store/hero-store';
 @Injectable({
   providedIn: 'root',
 })
-export class HeroesQuery {
+export class HeroSearchQuery {
   constructor(private store$: Store<{}>) {}
-  heroes$: Observable<Hero[]> = selectStateFromHeroStore(this.store$, (state) => state.heroes);
+
+  searchTerms$: Observable<string> = selectStateFromHeroStore(this.store$, (state) => state.searchTerms);
+  heroes$: Observable<Hero[] | null> = selectStateFromHeroStore(this.store$, (state) => state.searchedHeroes);
 }
